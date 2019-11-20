@@ -48,6 +48,7 @@ public class Database {
 		
 		System.out.println("Andre in da house");
 		System.out.println("Testgkle;gre'");
+		System.out.println("follow me on instagram @jasminameer'");
 		
 	}
 }
