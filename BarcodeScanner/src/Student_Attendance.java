@@ -1,5 +1,5 @@
 
-public class Student_attendance {
+public class Student_Attendance {
 	
 	public String name;
 	public int id;
