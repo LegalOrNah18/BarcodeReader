@@ -14,9 +14,7 @@ public class Student_Attendance {
 		return name;
 	}
 	
-	public String getLName() {
-		return last_name;
-	}
+	
 	
 	
 }
