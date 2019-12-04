@@ -34,9 +34,7 @@ public class Database {
 		String sql="DELETE FROM TESTING WHERE id=?";
 		try (Connection conn=this.connect()){
 			PreparedStatement statement=conn.prepareStatement(sql);
-			statement.setString(1, fname);
-			statement.setString(2, lname);
-			statement.setInt(3, id);
+			statement.setInt(1, id);
 			statement.executeUpdate();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -62,8 +60,8 @@ public class Database {
 	
 	public static void main(String[] args) {
 		Database data=new Database();
-		data.add("DYLAN","PALK",18092923);
-		data.remove("DYLAN","PALK",18092923);		
+		data.remove("DYLAN","PALK",18092923);	
+		
 		try {
 			Connection myconn=connect();
 			Statement stmt=myconn.createStatement();
