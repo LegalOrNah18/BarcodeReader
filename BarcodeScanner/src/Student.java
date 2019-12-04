@@ -6,7 +6,6 @@ public class Student {
 	public String last_name;
 	public int id;
 	public int mobile_num;
-	public Society society;
 	public String course;
 	
 	public int getID() {
@@ -23,10 +22,6 @@ public class Student {
 	
 	public String getLName() {
 		return last_name;
-	}
-	
-	public Society getSociety() {
-		return society;
 	}
 	
 	public String getCourse() {
