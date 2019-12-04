@@ -1,6 +1,7 @@
 
 
 import java.sql.*;
+import java.util.*;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
@@ -17,21 +18,22 @@ public class Database {
 		return conn;
 	}
 	
-	public void add(String fname, String lname, int id) {
-		String sql="INSERT INTO TESTING(First_Name, Last_Name,ID)VALUES(?,?,?)";
+	public void add(String fname, String lname, int id, String course) {
+		String sql="INSERT INTO StudentData(First_Name, Last_Name,ID, Course)VALUES(?,?,?,?)";
 		try (Connection conn=this.connect()){
 			PreparedStatement statement=conn.prepareStatement(sql);
 			statement.setString(1, fname);
 			statement.setString(2, lname);
 			statement.setInt(3, id);
+			statement.setString(4, course);
 			statement.executeUpdate();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 	
-	public void remove(String fname, String lname, int id) {
-		String sql="DELETE FROM TESTING WHERE id=?";
+	public void remove(int id) {
+		String sql="DELETE FROM StudentData WHERE id=?";
 		try (Connection conn=this.connect()){
 			PreparedStatement statement=conn.prepareStatement(sql);
 			statement.setInt(1, id);
@@ -41,14 +43,16 @@ public class Database {
 		}
 	}
 	
-	public void update(String fname, String lname, int id) {
-		String sql="UPDATE TESTING SET(First_Name, Last_Name,ID)VALUES(?,?,?)";
+	public void update(String fname, String lname, int id, String course) {
+		String sql="UPDATE StudentData SET First_Name = ?, Last_Name = ?, Course=? WHERE id = ?";
 		try (Connection conn=this.connect()){
-			PreparedStatement statement=conn.prepareStatement(sql);
-			statement.setString(1, fname);
-			statement.setString(2, lname);
-			statement.setInt(3, id);
-			statement.executeUpdate();
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, fname);
+			ps.setString(2, lname);
+			ps.setString(3, course);
+			ps.setInt(4, id);
+			ps.executeUpdate();
+			ps.close();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -60,19 +64,21 @@ public class Database {
 	
 	public static void main(String[] args) {
 		Database data=new Database();
-		data.remove("DYLAN","PALK",18092923);	
-		
+		Scanner scan=new Scanner(System.in);
+		data.add("KAVIN", "JINASENA", 18058589, "COMPUTER SCIENCE");
 		try {
 			Connection myconn=connect();
 			Statement stmt=myconn.createStatement();
-			String query="SELECT * FROM testing";
+			String query="SELECT * FROM Student";
 			ResultSet result=stmt.executeQuery(query);
 			while (result.next()) {
-				System.out.println(result.getInt(1)+" "+result.getString(2)+" "+result.getString(3));
+				System.out.println(result.getInt(1)+" "+result.getString(2)+" "+result.getString(3)+" "+result.getString(4));
 			}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
+		
+		
 		
 		
 		
