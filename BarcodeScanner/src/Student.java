@@ -7,6 +7,7 @@ public class Student {
 	public int id;
 	public int mobile_num;
 	public Society society;
+	public String course;
 	
 	public int getID() {
 		return id;
@@ -26,6 +27,10 @@ public class Student {
 	
 	public Society getSociety() {
 		return society;
+	}
+	
+	public String getCourse() {
+		return course;
 	}
 	
 	
