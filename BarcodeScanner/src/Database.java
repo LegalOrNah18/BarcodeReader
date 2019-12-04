@@ -65,11 +65,11 @@ public class Database {
 	public static void main(String[] args) {
 		Database data=new Database();
 		Scanner scan=new Scanner(System.in);
-		data.add("KAVIN", "JINASENA", 18058589, "COMPUTER SCIENCE");
+		data.add("KEVAN", "JINASENA", 18058289, "JAPANESE STUDIES AND COMPSCI");
 		try {
 			Connection myconn=connect();
 			Statement stmt=myconn.createStatement();
-			String query="SELECT * FROM Student";
+			String query="SELECT * FROM StudentData";
 			ResultSet result=stmt.executeQuery(query);
 			while (result.next()) {
 				System.out.println(result.getInt(1)+" "+result.getString(2)+" "+result.getString(3)+" "+result.getString(4));
