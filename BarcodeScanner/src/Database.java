@@ -19,7 +19,7 @@ public class Database {
 	}
 	
 	public void add(String fname, String lname, int id, String course) {
-		String sql="INSERT INTO StudentData(First_Name, Last_Name,ID, Course)VALUES(?,?,?,?)";
+		String sql="INSERT INTO student(First_Name, Last_Name,ID, Course)VALUES(?,?,?,?)";
 		try (Connection conn=this.connect()){
 			PreparedStatement statement=conn.prepareStatement(sql);
 			statement.setString(1, fname);
@@ -33,7 +33,7 @@ public class Database {
 	}
 	
 	public void remove(int id) {
-		String sql="DELETE FROM StudentData WHERE id=?";
+		String sql="DELETE FROM student WHERE id=?";
 		try (Connection conn=this.connect()){
 			PreparedStatement statement=conn.prepareStatement(sql);
 			statement.setInt(1, id);
@@ -44,7 +44,7 @@ public class Database {
 	}
 	
 	public void update(String fname, String lname, int id, String course) {
-		String sql="UPDATE StudentData SET First_Name = ?, Last_Name = ?, Course=? WHERE id = ?";
+		String sql="UPDATE student SET First_Name = ?, Last_Name = ?, Course=? WHERE id = ?";
 		try (Connection conn=this.connect()){
 			PreparedStatement ps=conn.prepareStatement(sql);
 			ps.setString(1, fname);
@@ -69,7 +69,7 @@ public class Database {
 		try {
 			Connection myconn=connect();
 			Statement stmt=myconn.createStatement();
-			String query="SELECT * FROM StudentData";
+			String query="SELECT * FROM student";
 			ResultSet result=stmt.executeQuery(query);
 			while (result.next()) {
 				System.out.println(result.getInt(1)+" "+result.getString(2)+" "+result.getString(3)+" "+result.getString(4));
