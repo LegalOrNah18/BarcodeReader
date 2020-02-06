@@ -76,6 +76,7 @@ public class Database {
 				Connection myconn=connect();
 				System.out.println("Decide Action: Add, Delete, Update or View");
 				String choice1= scan.next();
+				
 				if (choice1.equals("view")) {
 					System.out.println("Enter student ID");
 					int studID=scan.nextInt();
