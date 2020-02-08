@@ -21,6 +21,7 @@ public class StudentLoggedIn extends JFrame {
 
 	private JPanel contentPane;
 	private static JTextField studID;
+	private JButton btnNewButton;
 	
 	public static Connection connect() {
 		Connection conn=null;
@@ -105,5 +106,16 @@ public class StudentLoggedIn extends JFrame {
 		});
 		StudLogin.setBounds(187, 160, 94, 30);
 		contentPane.add(StudLogin);
+		
+		btnNewButton = new JButton("<- Back");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StudentOptions student1=new StudentOptions();
+				student1.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(0, 0, 89, 23);
+		contentPane.add(btnNewButton);
 	}
 }

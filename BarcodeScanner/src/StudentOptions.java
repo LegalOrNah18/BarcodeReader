@@ -60,6 +60,17 @@ public class StudentOptions extends JFrame {
 		});
 		btnNewButton_1.setBounds(409, 135, 141, 42);
 		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("<- Back");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TextingJFrame student2=new  TextingJFrame();
+				student2.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnNewButton_2.setBounds(0, 0, 89, 23);
+		contentPane.add(btnNewButton_2);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StudentLoggedIn student1=new StudentLoggedIn();

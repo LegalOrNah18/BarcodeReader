@@ -6,19 +6,36 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JInternalFrame;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class StudentLoginPage extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField username;
-	private JTextField password;
+	private JPasswordField password;
+	
+	public static Connection connect() {
+		Connection conn=null;
+		try {
+			conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/students","root","Legal69!");
+			
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return conn;
+	}
 
 	/**
 	 * Launch the application.
@@ -47,7 +64,7 @@ public class StudentLoginPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Username/ID: ");
+		JLabel lblNewLabel = new JLabel("ID: ");
 		lblNewLabel.setFont(new Font("Nirmala UI", Font.PLAIN, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(126, 136, 140, 47);
@@ -57,11 +74,6 @@ public class StudentLoginPage extends JFrame {
 		username.setBounds(296, 147, 163, 27);
 		contentPane.add(username);
 		username.setColumns(10);
-		
-		password = new JTextField();
-		password.setColumns(10);
-		password.setBounds(296, 209, 163, 27);
-		contentPane.add(password);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password: ");
 		lblNewLabel_1.setFont(new Font("Nirmala UI", Font.PLAIN, 14));
@@ -80,15 +92,32 @@ public class StudentLoginPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String user=username.getText();
 				String pass=password.getText();
-				
 				try {
+					Connection myconn=connect();
+					String query="SELECT * FROM studentlogin WHERE username=? and pass=?";
 					
+					PreparedStatement pst=myconn.prepareStatement(query);
+					pst.setString(1, user);
+					pst.setString(2, pass);
+					ResultSet result=pst.executeQuery();
+					if (result.next()) {
+						JOptionPane.showMessageDialog(null, "Logged in Successfully");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Logged in unSuccessfully");
+					}
 				}catch (Exception e1) {
 					
 				}
+				
+				
 			}
 		});
 		btnNewButton.setBounds(244, 278, 117, 37);
 		contentPane.add(btnNewButton);
+		
+		password = new JPasswordField();
+		password.setBounds(296, 217, 163, 27);
+		contentPane.add(password);
 	}
 }

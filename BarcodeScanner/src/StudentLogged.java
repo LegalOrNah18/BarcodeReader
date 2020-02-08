@@ -11,6 +11,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class StudentLogged extends JFrame {
 
@@ -85,6 +88,17 @@ public class StudentLogged extends JFrame {
 		JLabel Course = new JLabel("");
 		Course.setBounds(150, 150, 168, 14);
 		contentPane.add(Course);
+		
+		JButton btnNewButton = new JButton("<- Back");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StudentLoggedIn student1=new StudentLoggedIn();
+				student1.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(0, 0, 89, 23);
+		contentPane.add(btnNewButton);
 		
 		int id=StudentLoggedIn.getID();
 		try {
