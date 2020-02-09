@@ -23,7 +23,7 @@ import javax.swing.JPasswordField;
 public class StudentLoginPage extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField username;
+	private static JTextField username;
 	private JPasswordField password;
 	
 	public static Connection connect() {
@@ -35,6 +35,11 @@ public class StudentLoginPage extends JFrame {
 			System.out.println(e.getMessage());
 		}
 		return conn;
+	}
+	
+	public static int getID() {
+		String user=username.getText();
+		return Integer.parseInt(user);
 	}
 
 	/**
@@ -94,7 +99,7 @@ public class StudentLoginPage extends JFrame {
 				String pass=password.getText();
 				try {
 					Connection myconn=connect();
-					String query="SELECT * FROM studentlogin WHERE username=? and pass=?";
+					String query="SELECT * FROM studentlogin WHERE username=? and password=?";
 					
 					PreparedStatement pst=myconn.prepareStatement(query);
 					pst.setString(1, user);
@@ -102,6 +107,9 @@ public class StudentLoginPage extends JFrame {
 					ResultSet result=pst.executeQuery();
 					if (result.next()) {
 						JOptionPane.showMessageDialog(null, "Logged in Successfully");
+						StudentOptions student1=new StudentOptions();
+						student1.setVisible(true);
+						setVisible(false);
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Logged in unSuccessfully");
@@ -119,5 +127,20 @@ public class StudentLoginPage extends JFrame {
 		password = new JPasswordField();
 		password.setBounds(296, 217, 163, 27);
 		contentPane.add(password);
+		
+		JButton btnNewButton_1 = new JButton("Forgot Your Password?");
+		btnNewButton_1.setBounds(208, 342, 182, 23);
+		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("<- Back");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TextingJFrame student123=new TextingJFrame();
+				student123.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnNewButton_2.setBounds(0, 0, 89, 23);
+		contentPane.add(btnNewButton_2);
 	}
 }

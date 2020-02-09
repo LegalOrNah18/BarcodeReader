@@ -13,6 +13,7 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 public class TextingJFrame extends JFrame {
 
@@ -47,17 +48,22 @@ public class TextingJFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Student");
-		btnNewButton.setBackground(Color.CYAN);
+		JButton btnNewButton = new JButton("Students");
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StudentOptions student=new StudentOptions();
-				student.setVisible(true);
+				StudentLoginPage student1=new StudentLoginPage();
+				student1.setVisible(true);
 				setVisible(false);
 				
 			}
 		});
-		btnNewButton.setBounds(175, 111, 89, 23);
+		btnNewButton.setBounds(76, 112, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Teachers");
+		btnNewButton_1.setBackground(UIManager.getColor("Button.light"));
+		btnNewButton_1.setBounds(254, 112, 89, 23);
+		contentPane.add(btnNewButton_1);
 	}
 }

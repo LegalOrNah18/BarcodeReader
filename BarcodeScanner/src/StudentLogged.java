@@ -92,7 +92,7 @@ public class StudentLogged extends JFrame {
 		JButton btnNewButton = new JButton("<- Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StudentLoggedIn student1=new StudentLoggedIn();
+				StudentOptions student1=new StudentOptions();
 				student1.setVisible(true);
 				setVisible(false);
 			}
@@ -100,7 +100,7 @@ public class StudentLogged extends JFrame {
 		btnNewButton.setBounds(0, 0, 89, 23);
 		contentPane.add(btnNewButton);
 		
-		int id=StudentLoggedIn.getID();
+		int id=StudentLoginPage.getID();
 		try {
 			Connection myconn=connect();
 			String query="SELECT * FROM student WHERE ID=?";
