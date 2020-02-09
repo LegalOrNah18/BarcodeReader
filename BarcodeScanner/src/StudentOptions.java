@@ -62,12 +62,13 @@ public class StudentOptions extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_1 = new JButton("Current Modules");
-		btnNewButton_1.setBounds(154, 186, 170, 42);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnNewButton_1.setBounds(413, 82, 170, 42);
 		contentPane.add(btnNewButton_1);
-		
-		JButton btnNewButton_3 = new JButton("New button");
-		btnNewButton_3.setBounds(453, 82, 89, 23);
-		contentPane.add(btnNewButton_3);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StudentLogged student1=new StudentLogged();
