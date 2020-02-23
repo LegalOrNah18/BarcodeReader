@@ -62,6 +62,13 @@ public class TextingJFrame extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Teachers");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TeacherOptions teacher=new TeacherOptions();
+				teacher.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnNewButton_1.setBackground(UIManager.getColor("Button.light"));
 		btnNewButton_1.setBounds(254, 112, 89, 23);
 		contentPane.add(btnNewButton_1);
