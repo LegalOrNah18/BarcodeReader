@@ -1,25 +1,19 @@
 import java.awt.BorderLayout;
-import java.sql.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 
-public class TextingJFrame extends JFrame {
+public class AdminStudentOptions extends JFrame {
 
 	private JPanel contentPane;
-	
-	
 
 	/**
 	 * Launch the application.
@@ -28,7 +22,7 @@ public class TextingJFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TextingJFrame frame = new TextingJFrame();
+					AdminStudentOptions frame = new AdminStudentOptions();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,48 +34,53 @@ public class TextingJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TextingJFrame() {
+	public AdminStudentOptions() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 605, 366);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Students");
-		btnNewButton.setBackground(Color.LIGHT_GRAY);
+		JLabel lblNewLabel = new JLabel("Admin Teacher Options");
+		lblNewLabel.setFont(new Font("Trebuchet MS", Font.BOLD, 22));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(64, 25, 472, 46);
+		contentPane.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("Add a student");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StudentLoginPage student1=new StudentLoginPage();
-				student1.setVisible(true);
+				AddStudent student=new AddStudent();
+				student.setVisible(true);
 				setVisible(false);
 				
 			}
 		});
-		btnNewButton.setBounds(76, 112, 89, 23);
+		btnNewButton.setBounds(95, 121, 177, 46);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Teachers");
+		JButton btnNewButton_1 = new JButton("Remove a Student");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TeacherOptions teacher=new TeacherOptions();
-				teacher.setVisible(true);
+				RemoveStudent student1=new RemoveStudent();
+				student1.setVisible(true);
 				setVisible(false);
 			}
 		});
-		btnNewButton_1.setBackground(UIManager.getColor("Button.light"));
-		btnNewButton_1.setBounds(254, 112, 89, 23);
+		btnNewButton_1.setBounds(302, 121, 177, 46);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Admin");
+		JButton btnNewButton_2 = new JButton("Update an Existing Student");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminLogin admin=new AdminLogin();
-				admin.setVisible(true);
+				UpdateStudent student2=new UpdateStudent();
+				student2.setVisible(true);
 				setVisible(false);
 			}
 		});
-		btnNewButton_2.setBounds(165, 178, 89, 23);
+		btnNewButton_2.setBounds(196, 197, 177, 46);
 		contentPane.add(btnNewButton_2);
 	}
+
 }
